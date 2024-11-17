@@ -1,0 +1,31 @@
+<!-- Sections/products.liquid -->
+<section id="products-section">
+    <div class="product-section">
+      <h2>Sản phẩm</h2>
+      <div class="product-list">
+        {% paginate collections.all.products by 12 %}
+          {% for product in collections.all.products %}
+            <div class="product-card">
+              <a href="{{ product.url }}">
+                <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.title }}">
+                <h3>{{ product.title }}</h3>
+                <p>{{ product.price | money }}</p>
+              </a>
+            </div>
+          {% endfor %}
+        {% endpaginate %}
+      </div>
+  
+      <!-- Pagination -->
+      <div class="pagination">
+        {% if paginate.previous %}
+          <a href="{{ paginate.previous.url }}">Trước</a>
+        {% endif %}
+        <span>Trang {{ paginate.current_page }} / {{ paginate.pages }}</span>
+        {% if paginate.next %}
+          <a href="{{ paginate.next.url }}">Tiếp</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  

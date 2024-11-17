@@ -1,0 +1,30 @@
+<!-- Sections/filter.liquid -->
+<section id="filter-section">
+    <div class="filter-section">
+      <h2>Bộ Lọc</h2>
+      <form method="get" action="/collections/all">
+        <!-- Bộ lọc danh mục -->
+        <div>
+          <label for="category">Danh mục:</label>
+          <select name="filter_type" id="category" onchange="this.form.submit()">
+            <option value="">Tất cả</option>
+            {% for collection in collections %}
+              <option value="{{ collection.handle }}">{{ collection.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+  
+        <!-- Bộ lọc giá -->
+        <div>
+          <label for="price-range">Khoảng giá:</label>
+          <select name="price_range" id="price-range" onchange="this.form.submit()">
+            <option value="">Tất cả</option>
+            <option value="under-500">Dưới 500.000</option>
+            <option value="500-1000">500.000 - 1.000.000</option>
+            <option value="over-1000">Trên 1.000.000</option>
+          </select>
+        </div>
+      </form>
+    </div>
+  </section>
+  

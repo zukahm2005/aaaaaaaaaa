@@ -1,77 +1,9 @@
-{% comment %}
-Template: Shop Page with Filters
-{% endcomment %}
-<head>
-    <link rel="stylesheet" href="{{ 'shop.css' | asset_url }}">
-  </head>
-  <div class="shop-container">
-      <h1>All Products</h1>
-    
-      <!-- Filter Section -->
-      <div class="filters">
-        <form method="get" action="">
-          <!-- Filter by Price -->
-          <label for="price-filter">Price Range:</label>
-          <select name="price" id="price-filter">
-            <option value="">All</option>
-            <option value="low">Under $50</option>
-            <option value="medium">$50 - $100</option>
-            <option value="high">Above $100</option>
-          </select>
-    
-          <!-- Filter by Tags -->
-          <label for="tag-filter">Tags:</label>
-          <select name="tag" id="tag-filter">
-            <option value="">All</option>
-            {% for tag in all_tags %}
-            <option value="{{ tag }}" {% if request.params.tag == tag %}selected{% endif %}>{{ tag }}</option>
-            {% endfor %}
-          </select>
-    
-          <!-- Submit Button -->
-          <button type="submit">Filter</button>
-        </form>
-      </div>
-    
-      <!-- Products Section -->
-      <div class="products">
-        {% assign price_filter = request.params.price %}
-        {% assign tag_filter = request.params.tag %}
-        {% paginate collections.all.products by 12 %}
-          {% for product in collections.all.products %}
-            {% assign show_product = true %}
-    
-            <!-- Price Filter Logic -->
-            {% if price_filter == 'low' and product.price > 5000 %}
-              {% assign show_product = false %}
-            {% elsif price_filter == 'medium' and (product.price < 5000 or product.price > 10000) %}
-              {% assign show_product = false %}
-            {% elsif price_filter == 'high' and product.price < 10000 %}
-              {% assign show_product = false %}
-            {% endif %}
-    
-            <!-- Tag Filter Logic -->
-            {% if tag_filter and tag_filter != '' and tag_filter not in product.tags %}
-              {% assign show_product = false %}
-            {% endif %}
-    
-            <!-- Render Product if it Matches Filters -->
-            {% if show_product %}
-            <div class="product-item">
-              <a href="{{ product.url }}">
-                <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
-                <h2>{{ product.title }}</h2>
-                <p>{{ product.price | money }}</p>
-              </a>
-            </div>
-            {% endif %}
-          {% endfor %}
-        {% endpaginate %}
-      </div>
-    
-      <!-- Pagination -->
-      <div class="pagination">
-        {{ paginate | default_pagination }}
-      </div>
-  </div>
-  
+{% layout 'default' %}
+
+<div class="shop-page-container">
+  <!-- Bộ lọc -->
+  {% section 'filter' %}
+
+  <!-- Hiển thị sản phẩm -->
+  {% section 'products' %}
+</div>
