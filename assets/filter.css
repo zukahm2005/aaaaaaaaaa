@@ -1,29 +1,22 @@
-/* Ẩn sidebar khi chưa active */
-.filter-sidebar.hidden {
-  position: fixed;
-  top: 0;
-  left: -300px; /* Trượt ra ngoài màn hình */
-  width: 300px;
-  height: 100%;
-  background-color: #fff;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+/* Sidebar mặc định ẩn */
+.filter-sidebar {
+  position: fixed; /* Sidebar cố định */
+  top: 0; /* Đỉnh trang */
+  right: -30%; /* Ẩn khỏi màn hình bên phải */
+  width: 25%; /* Chiều rộng sidebar */
+  height: 100%; /* Chiều cao đầy đủ */
+  background-color: #d8f3dc !important; /* Màu xanh nhạt */
+  color: #333; /* Màu chữ (đậm) */
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Đổ bóng */
   padding: 20px;
-  transition: left 0.3s ease;
-  z-index: 1000;
+  transition: right 0.3s ease-in-out; /* Hiệu ứng trượt mượt */
+  z-index: 1000; /* Đảm bảo nằm trên các phần khác */
+  overflow-y: auto; /* Kích hoạt cuộn nếu cần */
 }
 
-/* Sidebar mở */
-.filter-sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 300px;
-  height: 100%;
-  background-color: #fff;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  transition: left 0.3s ease;
-  z-index: 1000;
+/* Khi mở sidebar */
+.filter-sidebar.active {
+  right: 0; /* Trượt vào màn hình */
 }
 
 /* Nút mở sidebar */
@@ -31,19 +24,37 @@
   position: fixed;
   top: 20px;
   left: 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
+  background-color: #007bff; /* Màu nền nút xanh dương */
+  color: white; /* Màu chữ trắng */
   padding: 10px 20px;
-  cursor: pointer;
+  border: none;
   border-radius: 5px;
+  cursor: pointer;
   z-index: 1100;
 }
 
-/* Hiển thị sản phẩm */
-.product-card {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  display: block; /* Mặc định hiển thị */
+/* Nút đóng sidebar */
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  display: block;
+  text-align: right;
+  color: #007bff; /* Màu nút đóng */
+}
+
+/* Tiêu đề và nội dung */
+.filter-sidebar h2 {
+  font-size: 1.5em;
+  color: #007bff; /* Màu tiêu đề xanh dương */
+  margin-bottom: 20px;
+}
+
+.filter-sidebar .filter-item label {
+  color: #555; /* Màu nhãn */
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
 }

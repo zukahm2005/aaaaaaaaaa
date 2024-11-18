@@ -1,20 +1,24 @@
-// Mở hoặc đóng sidebar
 function toggleFilterSidebar() {
   const sidebar = document.getElementById('filter-sidebar'); // Lấy sidebar
-  const openButton = document.querySelector('.open-btn'); // Lấy nút "Bộ Lọc"
+  const openButton = document.querySelector('.open-btn'); // Nút mở sidebar
 
-  // Thêm hoặc xóa class 'hidden' cho sidebar
-  sidebar.classList.toggle('hidden');
-
-  // Ẩn hoặc hiện nút "Bộ Lọc" dựa vào trạng thái của sidebar
-  if (sidebar.classList.contains('hidden')) {
-    openButton.style.display = 'block'; // Hiện nút "Bộ Lọc" khi sidebar ẩn
+  // Kiểm tra trạng thái của sidebar
+  if (sidebar.classList.contains('active')) {
+    // Nếu sidebar đang mở -> đóng
+    sidebar.classList.remove('active');
+    sidebar.classList.add('hidden');
+    openButton.style.display = 'block'; // Hiện nút "Bộ Lọc"
   } else {
-    openButton.style.display = 'none'; // Ẩn nút "Bộ Lọc" khi sidebar hiện
+    // Nếu sidebar đang đóng -> mở
+    sidebar.classList.remove('hidden');
+    sidebar.classList.add('active');
+    openButton.style.display = 'none'; // Ẩn nút "Bộ Lọc"
   }
 }
 
-// Lọc sản phẩm
+
+
+
 function filterProducts() {
   const category = document.getElementById('category').value;
   const stockStatus = document.getElementById('stock-status').value;
@@ -52,6 +56,6 @@ function filterProducts() {
     product.style.display = isVisible ? 'block' : 'none';
   });
 
-  // Sau khi lọc xong, đóng sidebar
+  // Sau khi lọc, đóng sidebar
   toggleFilterSidebar();
 }
