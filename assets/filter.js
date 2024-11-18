@@ -16,9 +16,6 @@ function toggleFilterSidebar() {
   }
 }
 
-
-
-
 function filterProducts() {
   const category = document.getElementById('category').value;
   const stockStatus = document.getElementById('stock-status').value;

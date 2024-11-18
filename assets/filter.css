@@ -2,21 +2,21 @@
 .filter-sidebar {
   position: fixed; /* Sidebar cố định */
   top: 0; /* Đỉnh trang */
-  right: -30%; /* Ẩn khỏi màn hình bên phải */
+  left: -30%; /* Ẩn khỏi màn hình bên trái */
   width: 25%; /* Chiều rộng sidebar */
   height: 100%; /* Chiều cao đầy đủ */
   background-color: #d8f3dc !important; /* Màu xanh nhạt */
   color: #333; /* Màu chữ (đậm) */
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Đổ bóng bên phải */
   padding: 20px;
-  transition: right 0.3s ease-in-out; /* Hiệu ứng trượt mượt */
+  transition: left 1s ease-in-out; /* Hiệu ứng trượt mượt */
   z-index: 1000; /* Đảm bảo nằm trên các phần khác */
   overflow-y: auto; /* Kích hoạt cuộn nếu cần */
 }
 
 /* Khi mở sidebar */
 .filter-sidebar.active {
-  right: 0; /* Trượt vào màn hình */
+  left: 0; /* Trượt vào màn hình */
 }
 
 /* Nút mở sidebar */

@@ -4,6 +4,23 @@
   flex-direction: column; /* Hiển thị theo chiều dọc */
   gap: 20px; /* Khoảng cách giữa các phần */
 }
+.shop-header{
+  text-align: center;
+}
+.open-btn {
+  position: relative; /* Thay đổi từ fixed thành relative */
+  margin-top: 20px; /* Tạo khoảng cách từ header */
+  margin-left: 20px; /* Khoảng cách từ bên trái */
+  background-color: #007bff; /* Màu nền nút xanh dương */
+  color: white; /* Màu chữ trắng */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 100; /* Không cần ưu tiên z-index quá cao */
+  margin-bottom: 20px;
+}
+
 
 /* Nút chuyển đổi chế độ xem */
 .view-controls {
