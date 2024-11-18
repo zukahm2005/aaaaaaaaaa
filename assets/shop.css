@@ -88,64 +88,31 @@
   transform: scale(1.02); /* Phóng to nhẹ khi hover */
 }
 
-/* Chỉ hiển thị title và description ở chế độ 1 cột */
-.product-list.columns-1 .product-card {
-  display: flex; /* Hiển thị ngang */
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 20px;
-  text-align: left; /* Căn thông tin về bên trái */
-}
-
-.product-list.columns-1 .product-card img {
-  width: 150px; /* Kích thước ảnh nhỏ hơn */
-  height: auto;
-  margin-right: 20px; /* Khoảng cách giữa ảnh và thông tin */
-}
-
-.product-list.columns-1 .product-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.product-list.columns-1 h3 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
+/* Hiển thị tên sản phẩm ở mọi chế độ */
+.product-info h3 {
+  display: block !important; /* Tên sản phẩm luôn hiển thị */
+  font-size: 1em;
+  font-weight: bold;
+  margin: 10px 0;
   color: #333;
 }
 
-.product-list.columns-1 .product-price {
-  font-size: 1.2em;
-  color: #d9534f; /* Màu đỏ cho giá tiền */
-  font-weight: bold;
-  margin-top: 5px;
+/* Kích thước chữ theo số cột */
+.product-list.columns-1 .product-info h3 {
+  font-size: 1.5em;
 }
 
-.product-list.columns-1 .product-description {
-  font-size: 0.9em;
-  color: #666;
-  margin-top: 10px;
-  line-height: 1.4;
-}
-
-/* Thêm collection vào các chế độ còn lại */
-.product-list.columns-2 .product-collection,
-.product-list.columns-3 .product-collection,
-.product-list.columns-4 .product-collection {
-  display: block;
-  font-size: 0.9em;
-  color: #777;
-  margin-bottom: 5px;
-}
-
-/* Ẩn title và description ở chế độ 2, 3, 4 cột */
 .product-list.columns-2 .product-info h3,
 .product-list.columns-3 .product-info h3,
-.product-list.columns-4 .product-info h3,
+.product-list.columns-4 .product-info h3 {
+  font-size: 1em;
+}
+
+/* Ẩn mô tả sản phẩm trong chế độ 2, 3, 4 cột */
 .product-list.columns-2 .product-info .product-description,
 .product-list.columns-3 .product-info .product-description,
 .product-list.columns-4 .product-info .product-description {
-  display: none !important; /* Ưu tiên ẩn */
+  display: none; /* Ẩn mô tả ở chế độ nhiều cột */
 }
 
 /* Ẩn collection ở chế độ 1 cột */
@@ -170,6 +137,7 @@
   width: 120px; /* Kích thước nhỏ nhất cho chế độ 4 cột */
   height: auto;
 }
+
 /* Sidebar bộ lọc */
 .filter-section {
   width: 25%; /* Sidebar chiếm 25% chiều ngang */
