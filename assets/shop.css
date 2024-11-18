@@ -1,42 +1,203 @@
+/* Định nghĩa bố cục chính */
 .shop-page-container {
   display: flex;
-  gap: 20px;
+  flex-direction: column; /* Hiển thị theo chiều dọc */
+  gap: 20px; /* Khoảng cách giữa các phần */
 }
 
-.filter-section {
-  width: 20%;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-right: 1px solid #ddd;
-}
-
-.product-section {
-  width: 80%;
-  padding: 20px;
-}
-
-.product-list {
+/* Nút chuyển đổi chế độ xem */
+.view-controls {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
+.view-button {
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.view-button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Nút active */
+.view-button.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+/* Danh sách sản phẩm */
+.product-list {
+  display: grid;
+  gap: 20px; /* Khoảng cách giữa các sản phẩm */
+}
+
+.product-list.columns-1 {
+  grid-template-columns: 1fr; /* 1 cột */
+}
+
+.product-list.columns-2 {
+  grid-template-columns: repeat(2, 1fr); /* 2 cột */
+}
+
+.product-list.columns-3 {
+  grid-template-columns: repeat(3, 1fr); /* 3 cột */
+}
+
+.product-list.columns-4 {
+  grid-template-columns: repeat(4, 1fr); /* 4 cột */
+}
+
+/* Sản phẩm */
 .product-card {
-  width: calc(33.333% - 20px);
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #fff;
   text-align: center;
+  transition: all 0.3s ease;
 }
 
 .product-card img {
-  width: 100%;
+  width: 80%;
   height: auto;
   margin-bottom: 10px;
 }
 
-.pagination {
-  text-align: center;
-  margin-top: 20px;
+/* Liên kết sản phẩm */
+.product-card a {
+  text-decoration: none; /* Xóa gạch chân */
+  color: #333; /* Màu chữ mặc định */
+}
+
+.product-card a:hover {
+  text-decoration: none; /* Đảm bảo không có gạch chân khi hover */
+  color: #007bff; /* Màu xanh khi hover */
+}
+
+/* Sản phẩm khi hover */
+.product-card:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02); /* Phóng to nhẹ khi hover */
+}
+
+/* Chỉ hiển thị title và description ở chế độ 1 cột */
+.product-list.columns-1 .product-card {
+  display: flex; /* Hiển thị ngang */
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  text-align: left; /* Căn thông tin về bên trái */
+}
+
+.product-list.columns-1 .product-card img {
+  width: 150px; /* Kích thước ảnh nhỏ hơn */
+  height: auto;
+  margin-right: 20px; /* Khoảng cách giữa ảnh và thông tin */
+}
+
+.product-list.columns-1 .product-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-list.columns-1 h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.product-list.columns-1 .product-price {
+  font-size: 1.2em;
+  color: #d9534f; /* Màu đỏ cho giá tiền */
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.product-list.columns-1 .product-description {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* Thêm collection vào các chế độ còn lại */
+.product-list.columns-2 .product-collection,
+.product-list.columns-3 .product-collection,
+.product-list.columns-4 .product-collection {
+  display: block;
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 5px;
+}
+
+/* Ẩn title và description ở chế độ 2, 3, 4 cột */
+.product-list.columns-2 .product-info h3,
+.product-list.columns-3 .product-info h3,
+.product-list.columns-4 .product-info h3,
+.product-list.columns-2 .product-info .product-description,
+.product-list.columns-3 .product-info .product-description,
+.product-list.columns-4 .product-info .product-description {
+  display: none !important; /* Ưu tiên ẩn */
+}
+
+/* Ẩn collection ở chế độ 1 cột */
+.product-list.columns-1 .product-collection {
+  display: none;
+}
+
+/* Thu nhỏ ảnh trong chế độ 2 cột */
+.product-list.columns-2 .product-card img {
+  width: 200px; /* Thu nhỏ ảnh cho chế độ 2 cột */
+  height: auto;
+}
+
+/* Thu nhỏ hơn ảnh trong chế độ 3 cột */
+.product-list.columns-3 .product-card img {
+  width: 150px; /* Thu nhỏ hơn ảnh cho chế độ 3 cột */
+  height: auto;
+}
+
+/* Giữ kích thước nhỏ nhất ở chế độ 4 cột */
+.product-list.columns-4 .product-card img {
+  width: 120px; /* Kích thước nhỏ nhất cho chế độ 4 cột */
+  height: auto;
+}
+/* Sidebar bộ lọc */
+.filter-section {
+  width: 25%; /* Sidebar chiếm 25% chiều ngang */
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.filter-section h2 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.filter-item {
+  margin-bottom: 20px;
+}
+
+.filter-item label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.filter-item select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }

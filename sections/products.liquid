@@ -1,31 +1,35 @@
-<!-- Sections/products.liquid -->
-<section id="products-section">
-    <div class="product-section">
-      <h2>Sản phẩm</h2>
-      <div class="product-list">
-        {% paginate collections.all.products by 12 %}
-          {% for product in collections.all.products %}
-            <div class="product-card">
-              <a href="{{ product.url }}">
-                <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.title }}">
-                <h3>{{ product.title }}</h3>
-                <p>{{ product.price | money }}</p>
-              </a>
-            </div>
-          {% endfor %}
-        {% endpaginate %}
-      </div>
-  
-      <!-- Pagination -->
-      <div class="pagination">
-        {% if paginate.previous %}
-          <a href="{{ paginate.previous.url }}">Trước</a>
-        {% endif %}
-        <span>Trang {{ paginate.current_page }} / {{ paginate.pages }}</span>
-        {% if paginate.next %}
-          <a href="{{ paginate.next.url }}">Tiếp</a>
-        {% endif %}
-      </div>
+<section class="product-section">
+    <h2>Sản phẩm</h2>
+    <div class="view-controls">
+      <button class="view-button active" onclick="changeProductView(1)">1 cột</button>
+      <button class="view-button" onclick="changeProductView(2)">2 cột</button>
+      <button class="view-button" onclick="changeProductView(3)">3 cột</button>
+      <button class="view-button" onclick="changeProductView(4)">4 cột</button>
+    </div>
+    
+    <div class="product-list columns-3" id="product-list">
+      {% for product in collections.all.products %}
+        <div class="product-card"
+             data-category="{{ product.collections.first.handle }}"
+             data-price="{{ product.price | divided_by: 100 }}"
+             data-stock="{% if product.available %}in-stock{% else %}out-of-stock{% endif %}">
+          <a href="{{ product.url }}">
+            <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.title }}">
+          </a>
+          <div class="product-info">
+            <span class="product-collection">{{ product.collections.first.title }}</span>
+            <h3>{{ product.title }}</h3>
+            <p class="product-price">{{ product.price | money }}</p>
+            
+            <!-- Trạng thái sản phẩm -->
+            {% if product.available %}
+              <p class="product-status in-stock">Còn hàng: {{ product.variants.first.inventory_quantity }} sản phẩm</p>
+            {% else %}
+              <p class="product-status out-of-stock">Hết hàng</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
     </div>
   </section>
   
